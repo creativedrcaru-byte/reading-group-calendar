@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>모래시계 타이머</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="timer-app" aria-live="polite">
+    <header class="app-header">
+      <p class="eyebrow">Classroom Timer</p>
+      <h1>모래시계 타이머</h1>
+    </header>
+
+    <section class="duration-panel" aria-label="시간 선택">
+      <button class="duration-button" type="button" data-seconds="60">1분</button>
+      <button class="duration-button" type="button" data-seconds="180">3분</button>
+      <button class="duration-button" type="button" data-seconds="300">5분</button>
+      <button class="duration-button" type="button" data-seconds="600">10분</button>
+    </section>
+
+    <section class="stage" aria-label="타이머 상태">
+      <div class="hourglass-wrap" aria-hidden="true">
+        <svg class="hourglass" viewBox="0 0 320 430" role="img">
+          <defs>
+            <clipPath id="topGlass">
+              <polygon points="74,54 246,54 178,215 142,215"></polygon>
+            </clipPath>
+            <clipPath id="bottomGlass">
+              <polygon points="142,215 178,215 246,376 74,376"></polygon>
+            </clipPath>
+            <linearGradient id="glassFill" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stop-color="#fff9ef" stop-opacity="0.92"></stop>
+              <stop offset="1" stop-color="#efe1cc" stop-opacity="0.36"></stop>
+            </linearGradient>
+            <linearGradient id="sandFill" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stop-color="#f2c66e"></stop>
+              <stop offset="1" stop-color="#c98c3a"></stop>
+            </linearGradient>
+          </defs>
+
+          <path class="glass-bg" d="M74 54h172l-68 161 68 161H74l68-161Z"></path>
+          <g clip-path="url(#topGlass)">
+            <rect id="topSand" class="sand top-sand" x="62" y="54" width="196" height="161"></rect>
+          </g>
+          <g clip-path="url(#bottomGlass)">
+            <rect id="bottomSand" class="sand bottom-sand" x="62" y="376" width="196" height="0"></rect>
+            <ellipse id="sandMound" class="sand mound" cx="160" cy="370" rx="20" ry="5"></ellipse>
+          </g>
+          <line id="sandStream" class="sand-stream" x1="160" y1="211" x2="160" y2="330"></line>
+          <path class="glass-line" d="M74 54h172l-68 161 68 161H74l68-161Z"></path>
+          <line class="cap" x1="56" y1="36" x2="264" y2="36"></line>
+          <line class="cap" x1="56" y1="394" x2="264" y2="394"></line>
+          <line class="neck" x1="142" y1="215" x2="178" y2="215"></line>
+        </svg>
+      </div>
+
+      <div class="readout">
+        <output id="timeDisplay" class="time-display" aria-label="남은 시간">01:00</output>
+        <div id="statusMessage" class="status-message" role="status">1분 타이머가 준비되었습니다</div>
+      </div>
+    </section>
+
+    <section class="control-panel" aria-label="타이머 조작">
+      <button id="startButton" class="control-button primary" type="button">시작</button>
+      <button id="pauseButton" class="control-button" type="button">일시정지</button>
+      <button id="restartButton" class="control-button" type="button">다시 시작</button>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
